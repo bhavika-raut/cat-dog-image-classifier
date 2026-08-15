@@ -230,7 +230,15 @@ The web application provides:
 | Unclear image   | Uncertain ❓ |
 
 ---
+## 🖼️ Screenshots
 
+### 🐾 Cat vs Dog Classifier
+
+The web application allows users to upload an image or provide an image URL and displays the analyzed image along with the prediction result.
+
+![Cat vs Dog Classifier](screenshots/cat-dog-classifier.png)
+
+---
 ## 📈 Model Details
 
 ### Input
