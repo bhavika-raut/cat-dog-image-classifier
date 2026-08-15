@@ -1,0 +1,5 @@
+Flask
+tensorflow==2.21.0
+Pillow
+numpy
+requests

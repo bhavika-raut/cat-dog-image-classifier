@@ -1,0 +1,21 @@
+__pycache__/
+*.pyc
+
+.venv/
+venv/
+env/
+
+.idea/
+.vscode/
+
+*.log
+
+.DS_Store
+
+# Dataset
+training_set/
+test_set/
+
+# Temporary files
+uploads/
+temp/
