@@ -1,344 +1,299 @@
-\# 🐱🐶 Cat vs Dog Image Classifier
+# 🐱🐶 Cat vs Dog Image Classifier
 
+## 📌 Overview
 
+An **AI-powered image classification web application** that identifies whether an image contains a **Cat 🐱, Dog 🐶, or Neither ❌**.
 
-An AI-powered web application that classifies images as \*\*Cat 🐱, Dog 🐶, or Neither\*\* using a trained TensorFlow/Keras model and a Flask web interface.
+The application combines a **custom TensorFlow/Keras binary classification model** with a **pre-trained MobileNetV2 model** to provide more reliable image validation.
 
+### 🔹 Two-Stage Classification
 
+1️⃣ **MobileNetV2 + ImageNet** – Validates whether the uploaded image is likely to contain a cat or dog.
 
-\## 📌 Project Overview
+2️⃣ **Custom Keras Model** – Performs the final Cat vs Dog classification and provides a prediction score.
 
+---
 
+## 🎯 Purpose
 
-This project is an image classification application that allows users to:
+* Build a practical **computer vision** application.
+* Apply **deep learning** to real-world image classification.
+* Provide an easy-to-use web interface for image prediction.
+* Reduce incorrect predictions for non-cat/dog images using an additional validation model.
 
+---
 
+## 🚀 Features
 
-\* Upload an image from their computer
+✅ **Cat vs Dog Classification**
+Classifies images as Cat 🐱 or Dog 🐶.
 
-\* Enter an image URL
+✅ **Non-Cat/Dog Detection**
+Uses MobileNetV2 to identify images that are not cats or dogs.
 
-\* Preview the image being analyzed
+✅ **Image Upload**
+Upload an image directly from your computer.
 
-\* Classify the image as Cat or Dog
+✅ **Image URL Support**
+Analyze an image using its URL.
 
-\* Detect images that are not cats or dogs
+✅ **Image Preview**
+Displays the image being analyzed.
 
-\* Display the prediction confidence score
+✅ **Prediction Score**
+Shows the model's prediction score with the result.
 
-\* Reset the application and analyze another image
+✅ **Reset Functionality**
+Reset the application and analyze another image.
 
+✅ **Web-Based Interface**
+Simple and user-friendly Flask web application.
 
+---
 
-The application uses a two-stage image analysis approach. \*\*MobileNetV2\*\*, pre-trained on ImageNet, is used as an initial validation layer to identify whether an image is likely to contain a cat or dog. The image is then passed to the custom trained TensorFlow/Keras model for the final Cat/Dog classification.
+## 🧠 Machine Learning Approach
 
-
-
-\## 🛠️ Technologies Used
-
-
-
-\* Python 3.10
-
-\* Flask
-
-\* TensorFlow
-
-\* Keras
-
-\* MobileNetV2
-
-\* NumPy
-
-\* Pillow
-
-\* Requests
-
-\* HTML
-
-\* CSS
-
-\* JavaScript
-
-
-
-\## 🧠 Machine Learning
-
-
-
-The project uses:
-
-
-
-\### MobileNetV2
-
-
-
-A pre-trained MobileNetV2 model with ImageNet weights is used as an initial image validation step.
-
-
-
-It helps filter out images containing objects such as cars, laptops, flowers, etc.
-
-
-
-\### Custom Cat/Dog Model
-
-
-
-A trained TensorFlow/Keras binary classification model is used to perform the final Cat vs Dog prediction.
-
-
-
-The model accepts images resized to:
-
-
-
-`128 × 128`
-
-
-
-and normalized pixel values.
-
-
-
-\## 🔄 Application Workflow
-
-
+The application follows a two-stage image classification pipeline:
 
 ```text
-
-User
-
-&#x20; ↓
-
-Upload Image / Image URL
-
-&#x20; ↓
-
-Image Preprocessing
-
-&#x20; ↓
-
-MobileNetV2
-
-&#x20; ↓
-
-Cat/Dog Validation
-
-&#x20; ↓
-
-Custom Keras Model
-
-&#x20; ↓
-
-Cat / Dog / Uncertain
-
-&#x20; ↓
-
-Display Result
-
+                 📷 Input Image
+                       │
+                       ▼
+              ┌─────────────────┐
+              │   MobileNetV2   │
+              │    ImageNet     │
+              └────────┬────────┘
+                       │
+              Cat / Dog detected?
+                  ╱           ╲
+                No             Yes
+                │               │
+                ▼               ▼
+          ❌ Reject       Custom Keras Model
+                                  │
+                                  ▼
+                         ┌─────────────────┐
+                         │  Cat / Dog /    │
+                         │    Uncertain    │
+                         └─────────────────┘
 ```
 
+### 🔹 MobileNetV2
 
+A pre-trained **MobileNetV2** model with ImageNet weights is used as an initial validation layer.
 
-\## 📂 Project Structure
+It helps identify whether the input image is likely to contain a cat or dog before the custom model performs the final classification.
 
+### 🔹 Custom Keras Model
 
+The trained binary classification model performs the final Cat vs Dog prediction.
+
+Input size:
 
 ```text
+128 × 128 pixels
+```
 
+Pixel values are normalized to:
+
+```text
+0 – 1
+```
+
+---
+
+## 🛠️ Technologies Used
+
+| Technology      | Purpose                               |
+| --------------- | ------------------------------------- |
+| 🐍 Python       | Programming language                  |
+| 🌐 Flask        | Web framework                         |
+| 🧠 TensorFlow   | Deep learning framework               |
+| ⚙️ Keras        | Model training and prediction         |
+| 👁️ MobileNetV2 | Pre-trained image classifier          |
+| 🔢 NumPy        | Numerical/image processing            |
+| 🖼️ Pillow      | Image processing                      |
+| 🌍 Requests     | Image URL handling                    |
+| 🎨 HTML/CSS     | Web interface                         |
+| ⚡ JavaScript    | Image preview and reset functionality |
+
+---
+
+## 📂 Project Structure
+
+```text
 cat-dog-image-classifier/
-
 │
-
-├── cat\_dog\_classifier.py
-
-├── train\_cat\_dog.py
-
-├── cat\_dog\_model.keras
-
-├── requirements.txt
-
-├── README.md
-
-├── .gitignore
-
+├── 📄 cat_dog_classifier.py
+│       └── Flask web application
 │
-
-├── training\_set/
-
-└── test\_set/
-
+├── 📄 train_cat_dog.py
+│       └── Model training script
+│
+├── 📄 cat_dog_model.keras
+│       └── Trained TensorFlow/Keras model
+│
+├── 📄 requirements.txt
+│       └── Python dependencies
+│
+├── 📄 README.md
+│       └── Project documentation
+│
+├── 📄 .gitignore
+│
+├── 📁 training_set/
+│       └── Training images
+│
+└── 📁 test_set/
+        └── Testing images
 ```
 
+> Dataset folders can be excluded from GitHub when they are too large.
 
+---
 
-> The training and test datasets may be excluded from the GitHub repository because of their size.
+## ⚙️ Installation
 
-
-
-\## ⚙️ Installation
-
-
-
-Clone the repository:
-
-
+### 1️⃣ Clone the Repository
 
 ```bash
-
 git clone https://github.com/bhavika-raut/cat-dog-image-classifier.git
-
 ```
 
-
-
-Navigate to the project:
-
-
+### 2️⃣ Navigate to the Project
 
 ```bash
-
 cd cat-dog-image-classifier
-
 ```
 
-
-
-Install the required packages:
-
-
+### 3️⃣ Install Dependencies
 
 ```bash
-
 pip install -r requirements.txt
-
 ```
 
+---
 
+## ▶️ Run the Application
 
-\## ▶️ Run the Application
-
-
-
-Run:
-
-
+Start the Flask server:
 
 ```bash
-
-python cat\_dog\_classifier.py
-
+python cat_dog_classifier.py
 ```
 
-
-
-The Flask application will start locally.
-
-
-
-Open the following address in your browser:
-
-
+Open your browser and visit:
 
 ```text
-
 http://127.0.0.1:5000
-
 ```
 
+---
 
+## 🖼️ Application
 
-\## 🖼️ Features
+The web application provides:
 
+```text
+┌──────────────────────────────────────┐
+│       🐾 Cat vs Dog Classifier       │
+│                                      │
+│  1. Upload Image                    │
+│  [ Choose File ]                    │
+│                                      │
+│               OR                     │
+│                                      │
+│  2. Image URL                       │
+│  [ https://... ]                    │
+│                                      │
+│  ┌──────────────────────────────┐   │
+│  │      Image Preview           │   │
+│  └──────────────────────────────┘   │
+│                                      │
+│       [ Predict → ]  [ ↻ ]          │
+│                                      │
+│  RESULT                              │
+│  🐶 Dog (0.9998)                    │
+└──────────────────────────────────────┘
+```
 
+---
 
-\### Image Upload
+## 🔍 Example Predictions
 
+| Input           | Result      |
+| --------------- | ----------- |
+| 🐱 Cat image    | Cat 🐱      |
+| 🐶 Dog image    | Dog 🐶      |
+| 🚗 Car image    | Neither ❌   |
+| 🌸 Flower image | Neither ❌   |
+| Unclear image   | Uncertain ❓ |
 
+---
+## 🖼️ Screenshots
 
-Users can select an image directly from their computer.
+### 🐾 Cat vs Dog Classifier
 
+The web application allows users to upload an image or provide an image URL and displays the analyzed image along with the prediction result.
 
+![Cat vs Dog Classifier](screenshots/cat-dog-classifier.png)
 
-\### Image URL
+---
+## 📈 Model Details
 
+### Input
 
+```text
+128 × 128 × 3
+```
 
-Users can provide an image URL for classification.
+### Output
 
+Binary classification score.
 
+The application interprets the score as:
 
-\### Image Preview
+```text
+Score > 0.50       → 🐶 Dog
+Score < 0.50       → 🐱 Cat
+0.40 – 0.60        → ❓ Uncertain
+```
 
+---
 
+## 🔮 Future Improvements
 
-The image being analyzed is displayed in the application.
+🚀 Improve model accuracy with a larger and more diverse dataset.
 
+📊 Add model evaluation metrics such as:
 
+* Accuracy
+* Precision
+* Recall
+* F1-Score
+* Confusion Matrix
 
-\### Cat/Dog Detection
+📈 Add prediction history.
 
+☁️ Deploy the application using a cloud platform.
 
+🎨 Improve the user interface and user experience.
 
-The application predicts:
+🐾 Extend the model to support additional animal categories.
 
+---
 
+## 👩‍💻 Author
 
-\* 🐱 Cat
+### **Bhavika Raut**
 
-\* 🐶 Dog
+AI & Machine Learning Enthusiast
 
-\* ❓ Uncertain
-
-\* ❌ Neither / Not a Cat or Dog
-
-
-
-\### Confidence Score
-
-
-
-The prediction score is displayed with the classification result.
-
-
-
-\## 🎯 Future Improvements
-
-
-
-\* Improve model accuracy with a larger and more diverse dataset
-
-\* Add confusion matrix and model evaluation metrics
-
-\* Add prediction history
-
-\* Deploy the application online
-
-\* Improve UI/UX
-
-\* Add support for additional animal categories
-
-
-
-\## 👩‍💻 Author
-
-
-
-\*\*Bhavika Raut\*\*
-
-
-
-GitHub:
-
+🔗 GitHub:
 https://github.com/bhavika-raut
 
+---
 
+## ⭐ If you find this project useful
 
-```
-
-```
-
-
-
+Feel free to **star ⭐ the repository** and explore the project!
