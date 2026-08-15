@@ -232,11 +232,17 @@ The web application provides:
 ---
 ## 🖼️ Screenshots
 
-### 🐾 Cat vs Dog Classifier
+### 🐱 Cat Prediction
 
-The web application allows users to upload an image or provide an image URL and displays the analyzed image along with the prediction result.
+![Cat Prediction](screenshots/cat.png)
 
-![Cat vs Dog Classifier](screenshots/cat-dog-classifier.png)
+### 🐶 Dog Prediction
+
+![Dog Prediction](screenshots/dog.png)
+
+### ❌ Neither / Non-Cat-Dog Prediction
+
+![Neither Prediction](screenshots/neither.png)
 
 ---
 ## 📈 Model Details
